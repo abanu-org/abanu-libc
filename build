@@ -24,6 +24,9 @@ export PATH=/mnt/tmp-data/sebastian/abanu-toolchain/opt/gcc-x.y.z/bin:/mnt/tmp-d
 
 export PATH=$PREFIX/bin:$PATH
 autoconf --version
+automake --version
+
+SYSROOT=$PREFIX
 
 # make symbolic link:
 #cd /mnt/tmp-data/sebastian/abanu-toolchain/opt/cross/bin
@@ -34,12 +37,16 @@ autoconf --version
 #ln i686-elf-ranlib i686-abanu-ranlib
 #cd $ROOTDIR
 
-cd $ROOTDIR
-mkdir -p newlib-build
-cd $ROOTDIR/newlib/newlib/libc/sys
-autoconf
-cd abanu
-autoreconf
+#cd $ROOTDIR
+#mkdir -p newlib-build
+#cd $ROOTDIR/newlib/newlib/libc/sys
+#autoconf
+#cd abanu
+#pwd
+#autoreconf
 cd $ROOTDIR/newlib-build
-../newlib/configure --prefix=$PREFIX --target=i686-abanu
-make all
+#../newlib/configure --prefix=$PREFIX --target=i686-abanu
+#make all -j14
+echo $ROOTDIR
+echo $SYSROOT
+make install -j14
