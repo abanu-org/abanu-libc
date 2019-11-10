@@ -1,8 +1,8 @@
 
-autoconf-2.65.tar.gz*
-autoconf-2.65/
-automake-1.11.tar.gz*
-automake-1.11/
+autoconf-*
+autoconf-*/
+automake-*
+automake-*/
 
 automake-build/
 autoconf-build/
