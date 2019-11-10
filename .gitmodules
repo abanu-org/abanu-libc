@@ -1,3 +1,9 @@
 [submodule "newlib"]
 	path = newlib
 	url = https://github.com/abanu-org/newlib.git
+[submodule "automake"]
+	path = automake
+	url = git://git.savannah.gnu.org/automake.git
+[submodule "autoconf"]
+	path = autoconf
+	url = git://git.savannah.gnu.org/autoconf.git
