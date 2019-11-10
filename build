@@ -5,6 +5,11 @@ export PREFIX="$ROOTDIR/opt/libc"
 
 export PATH=/mnt/tmp-data/sebastian/abanu-toolchain/opt/gcc-x.y.z/bin:/mnt/tmp-data/sebastian/abanu-toolchain/opt/cross/bin:$PATH
 
+wget https://ftp.gnu.org/gnu/automake/automake-1.11.tar.gz
+wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.65.tar.gz
+tar xvf automake-1.11.tar.gz
+tar xvf autoconf-2.65.tar.gz
+
 cd $ROOTDIR
 mkdir -p autoconf-build
 cd autoconf-build
