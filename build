@@ -10,8 +10,16 @@ export PATH=/mnt/tmp-data/sebastian/abanu-toolchain/opt/gcc-x.y.z/bin:/mnt/tmp-d
 #tar xvf automake-1.11.tar.gz
 #tar xvf autoconf-2.65.tar.gz
 
-cd $ROOTDIR
-mkdir -p autoconf-build
-cd autoconf-build
-../autoconf-2.65/configure --prefix=$PREFIX
-make -j14 && make install -j14
+#cd $ROOTDIR
+#mkdir -p automake-build
+#cd automake-build
+#../automake-1.11/configure --prefix=$PREFIX
+#make -j14 && make install -j14
+
+#cd $ROOTDIR
+#mkdir -p autoconf-build
+#cd autoconf-build
+#../autoconf-2.65/configure --prefix=$PREFIX
+#make -j14 && make install -j14
+
+export PATH=$PREFIX:$PATH
