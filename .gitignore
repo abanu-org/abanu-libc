@@ -1,0 +1,5 @@
+automake-build/
+autoconf-build/
+newlib-build/
+opt/
+bin/
