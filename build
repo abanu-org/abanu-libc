@@ -1,0 +1,12 @@
+#!/bin/sh
+
+export ROOTDIR=/mnt/tmp-data/sebastian/abanu-libc
+export PREFIX="$ROOTDIR/opt/libc"
+
+export PATH=/mnt/tmp-data/sebastian/abanu-toolchain/opt/gcc-x.y.z/bin:/mnt/tmp-data/sebastian/abanu-toolchain/opt/cross/bin:$PATH
+
+cd $ROOTDIR
+mkdir -p autoconf-build
+cd autoconf-build
+../autoconf/configure --prefix=$PREFIX
+make -j14 && make install -j14
