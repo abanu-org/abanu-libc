@@ -10,7 +10,7 @@ export PREFIX="$ROOTDIR/opt/libc"
 
 GCCDIR=$(realpath ../abanu-toolchain/opt/gcc-8.2.0-cross/bin)
 echo $GCCDIR
-export PATH=$GCCDIR:$PATH
+export PATH=$GCCDIR:"$PATH"
 
 wget https://ftp.gnu.org/gnu/automake/automake-1.11.tar.gz
 wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.65.tar.gz
