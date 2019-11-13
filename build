@@ -29,7 +29,7 @@ cd autoconf-build
 ../autoconf-2.65/configure --prefix=$PREFIX
 make -j14 && make install -j14
 
-export PATH=$PREFIX/bin:$PATH
+export PATH=$PREFIX/bin:"$PATH"
 autoconf --version
 automake --version
 
