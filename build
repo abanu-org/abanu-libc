@@ -1,26 +1,34 @@
 #!/bin/sh
 
-export ROOTDIR=/mnt/tmp-data/sebastian/abanu-libc
+set -x
+export MAKEFLAGS=-j` nproc`
+export CFLAGS="-s"
+export CXXFLAGS="-s"
+
+export ROOTDIR=$(pwd)
 export PREFIX="$ROOTDIR/opt/libc"
 
-export PATH=/mnt/tmp-data/sebastian/abanu-toolchain/opt/gcc-x.y.z/bin:/mnt/tmp-data/sebastian/abanu-toolchain/opt/cross/bin:$PATH
+GCCDIR=$(realpath ../abanu-toolchain/opt/gcc-8.2.0-cross/bin)
+echo $GCCDIR
+exit 0
+export PATH=$GCCDIR:$PATH
 
-#wget https://ftp.gnu.org/gnu/automake/automake-1.11.tar.gz
-#wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.65.tar.gz
-#tar xvf automake-1.11.tar.gz
-#tar xvf autoconf-2.65.tar.gz
+wget https://ftp.gnu.org/gnu/automake/automake-1.11.tar.gz
+wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.65.tar.gz
+tar xvf automake-1.11.tar.gz
+tar xvf autoconf-2.65.tar.gz
 
-#cd $ROOTDIR
-#mkdir -p automake-build
-#cd automake-build
-#../automake-1.11/configure --prefix=$PREFIX
-#make -j14 && make install -j14
+cd $ROOTDIR
+mkdir -p automake-build
+cd automake-build
+../automake-1.11/configure --prefix=$PREFIX
+make -j14 && make install -j14
 
-#cd $ROOTDIR
-#mkdir -p autoconf-build
-#cd autoconf-build
-#../autoconf-2.65/configure --prefix=$PREFIX
-#make -j14 && make install -j14
+cd $ROOTDIR
+mkdir -p autoconf-build
+cd autoconf-build
+../autoconf-2.65/configure --prefix=$PREFIX
+make -j14 && make install -j14
 
 export PATH=$PREFIX/bin:$PATH
 autoconf --version
@@ -29,24 +37,24 @@ automake --version
 SYSROOT=$PREFIX
 
 # make symbolic link:
-#cd /mnt/tmp-data/sebastian/abanu-toolchain/opt/cross/bin
-#ln i686-elf-ar i686-abanu-ar
-#ln i686-elf-as i686-abanu-as
-#ln i686-elf-gcc i686-abanu-gcc
-#ln i686-elf-gcc i686-abanu-cc
-#ln i686-elf-ranlib i686-abanu-ranlib
-#cd $ROOTDIR
+cd $GCCDIR
+ln i686-elf-ar i686-abanu-ar
+ln i686-elf-as i686-abanu-as
+ln i686-elf-gcc i686-abanu-gcc
+ln i686-elf-gcc i686-abanu-cc
+ln i686-elf-ranlib i686-abanu-ranlib
+cd $ROOTDIR
 
-#cd $ROOTDIR
-#mkdir -p newlib-build
-#cd $ROOTDIR/newlib/newlib/libc/sys
-#autoconf
-#cd abanu
-#pwd
-#autoreconf
+cd $ROOTDIR
+mkdir -p newlib-build
+cd $ROOTDIR/newlib/newlib/libc/sys
+autoconf
+cd abanu
+pwd
+autoreconf
 cd $ROOTDIR/newlib-build
-#../newlib/configure --prefix=$PREFIX --target=i686-abanu
-#make all -j14
+../newlib/configure --prefix=$PREFIX --target=i686-abanu
+make all -j14
 echo $ROOTDIR
 echo $SYSROOT
 make install -j14
