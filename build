@@ -1,11 +1,14 @@
 #!/bin/sh
 
 set -x
+
+ORIGIN_DIR=$(pwd)
+ROOTDIR=$(dirname $0)
+
 export MAKEFLAGS=-j` nproc`
 export CFLAGS="-s"
 export CXXFLAGS="-s"
 
-export ROOTDIR=$(pwd)
 export PREFIX="$ROOTDIR/opt/libc"
 
 GCCDIR=$(realpath ../abanu-toolchain/opt/gcc-8.2.0-cross/bin)
@@ -21,13 +24,13 @@ cd $ROOTDIR
 mkdir -p automake-build
 cd automake-build
 ../automake-1.11/configure --prefix=$PREFIX
-make -j14 && make install -j14
+make && make install
 
 cd $ROOTDIR
 mkdir -p autoconf-build
 cd autoconf-build
 ../autoconf-2.65/configure --prefix=$PREFIX
-make -j14 && make install -j14
+make && make install
 
 export PATH=$PREFIX/bin:"$PATH"
 autoconf --version
@@ -53,7 +56,7 @@ pwd
 autoreconf
 cd $ROOTDIR/newlib-build
 ../newlib/configure --prefix=$PREFIX --target=i686-abanu
-make all -j14
+make all
 echo $ROOTDIR
 echo $SYSROOT
-make install -j14
+make install
