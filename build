@@ -3,7 +3,9 @@
 set -x
 
 ORIGIN_DIR=$(pwd)
-ROOTDIR=$(dirname $0)
+ROOTDIR=$(dirname $(realpath $0))
+
+echo $ROOTDIR
 
 export MAKEFLAGS=-j` nproc`
 export CFLAGS="-s"
@@ -33,6 +35,7 @@ cd autoconf-build
 make && make install
 
 export PATH=$PREFIX/bin:"$PATH"
+echo $PATH
 autoconf --version
 automake --version
 
