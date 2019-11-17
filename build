@@ -8,8 +8,8 @@ ROOTDIR=$(dirname $(realpath $0))
 echo $ROOTDIR
 
 export MAKEFLAGS=-j` nproc`
-export CFLAGS="-s"
-export CXXFLAGS="-s"
+#export CFLAGS="-s"
+#export CXXFLAGS="-s"
 
 export PREFIX="$ROOTDIR/opt/libc"
 
