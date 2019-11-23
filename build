@@ -8,8 +8,11 @@ ROOTDIR=$(dirname $(realpath $0))
 echo $ROOTDIR
 
 export MAKEFLAGS=-j` nproc`
-#export CFLAGS="-s"
-#export CXXFLAGS="-s"
+export CFLAGS="-g3 -O0"
+export CXXFLAGS="-g3 -O0"
+#export CCASFLAGS="-O0"
+export LIBCFLAGS="-g3 -O0"
+#export CFLAGS_FOR_TARGET="-g3 -O0"
 
 export PREFIX="$ROOTDIR/opt/libc"
 
@@ -58,7 +61,7 @@ cd abanu
 pwd
 autoreconf
 cd $ROOTDIR/newlib-build
-../newlib/configure --prefix=$PREFIX --target=i686-abanu
+../newlib/configure --prefix=$PREFIX --target=i686-abanu --enable-target-optspace
 make all
 echo $ROOTDIR
 echo $SYSROOT
